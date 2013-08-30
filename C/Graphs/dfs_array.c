@@ -45,7 +45,7 @@ void dfs(int v)
 
 int main()
 {
-    /* BFS for the following graph
+    /* DFS for the following graph
      *        1
      *      / | \
      *     2  6  7
