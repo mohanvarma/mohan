@@ -56,7 +56,7 @@ int main()
     G[4][5] = 1;
 
     //Undirected
-    G[0][1] = 1;
+    G[1][0] = 1;
     G[2][1] = 1;
     G[3][2] = 1;
     G[3][0] = 1;
@@ -64,7 +64,8 @@ int main()
     G[4][0] = 1;
     G[5][4] = 1;
 
-    bfs(0);
+    //bfs on vertex v is bfs(v-1)
+    bfs(1);
 
     return 0;
 }
