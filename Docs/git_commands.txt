@@ -1,0 +1,11 @@
+git clone https://github.com/mohanvarma/mohan.git
+git pull
+git status -s
+git log
+git log --stat
+git add
+git commit -m <message>
+git push
+git reset --hard origin/master
+git config --global user.email varma.mohan@ymail.com
+git config --global user.name mohanvarma
