@@ -1,3 +1,22 @@
+/*
+procedure dfs(G; s)
+Input: Graph G = (V; E), directed or undirected; vertex s in V
+Output: For all vertices u reachable from s, dist(u) is set
+to the distance from s to u.
+for all u in V :
+	dist(u) = -1
+
+dist(s) = 0
+S = [s] (stack containing just s)
+while S is not empty:
+	u = pop(Q)
+	for all edges (u; v) in E:
+		if dist(v) = -1:
+		push(Q; v)
+		dist(v) = dist(u) + 1
+
+*/
+
 #include<stdio.h>
 #define VERTEX 10
 int distance[VERTEX] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
@@ -26,7 +45,7 @@ void dfs(int v)
 	int i,j;
 	//Pop
 	int vertex = S[top--];
-	printf("[%d]\n", vertex+1);
+	printf("[%d] distance %d\n", vertex+1, distance[vertex]);
 	for(i=0; i<VERTEX; i++)
 	{
 	    for(j=0; j<VERTEX; j++)
@@ -36,7 +55,7 @@ void dfs(int v)
 		    //Push
 		    S[++top] = j;
 		    count++;
-		    distance[j] = count;
+		    distance[j] = distance[vertex]+1;
 		}
 	    }
 	}
@@ -61,6 +80,7 @@ int main()
     G[1][4] = 1;
     G[0][5] = 1;
     G[0][6] = 1;
+    G[6][8] = 1;
     G[6][7] = 1;
     G[7][8] = 1;
     G[7][9] = 1;
@@ -72,6 +92,7 @@ int main()
     G[4][1] = 1;
     G[5][0] = 1;
     G[6][0] = 1;
+    G[8][6] = 1;
     G[7][6] = 1;
     G[8][7] = 1;
     G[9][7] = 1;
