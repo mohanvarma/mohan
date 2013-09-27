@@ -9,10 +9,10 @@ for all u in V :
 dist(s) = 0
 S = [s] (stack containing just s)
 while S is not empty:
-	u = pop(Q)
-	for all edges (u; v) in E:
+	u = pop(S)
+	for all edges (u, v) in E:
 		if dist(v) = -1:
-		push(Q; v)
+		push(S, v)
 		dist(v) = dist(u) + 1
 
 */

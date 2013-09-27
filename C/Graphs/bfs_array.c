@@ -10,9 +10,9 @@ dist(s) = 0
 Q = [s] (queue containing just s)
 while Q is not empty:
 	u = dequeue(Q)
-	for all edges (u; v) in E:
+	for all edges (u, v) in E:
 		if dist(v) = -1:
-		enqueue(Q; v)
+		enqueue(Q, v)
 		dist(v) = dist(u) + 1
 
 */
