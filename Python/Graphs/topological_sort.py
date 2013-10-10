@@ -35,7 +35,7 @@ def Dfs_visit(Graph, vertex):
 	    Distances[v] = Distances[vertex] + 1
 	    Dfs_visit(Graph, v)
     time = time + 1
-    Finish_times[vertex] = time
+    Finish_times[chr(vertex+ord('a'))] = time
     print 'vertex', vertex, 'revisited at time', time
 
 a, b, c, d, e, f, g, h = range(8)
@@ -58,8 +58,10 @@ Finish_times = {}
 Distances = [-1]*len(Graph)
 
 Dfs(Graph)	
-print Finish_times
-print sorted(Finish_times.values())
+#print Finish_times
+#print sorted(Finish_times.values())
+Finish_times = sorted(Finish_times.items(), key = lambda(k,v):v)
+print Finish_times[::-1]
     	
 
 
