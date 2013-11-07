@@ -10,11 +10,42 @@
 #include "prims_algo.h"
 
 // Graph constructor
-Graph::Graph(int x)
+// Takes input filename 
+// where graph data is stored
+Graph::Graph(string fileName)
 {
-	vertices = x;
 	edges = 0;
-	edgeLists.resize(x);
+
+	vertices = 0;
+
+	// Two end vertices of an edge
+	int edgeV1, edgeV2;
+
+	// Edge value
+	double edgeVal;
+
+	// Read from input file stream
+	ifstream input(fileName.c_str());
+
+	// Check if file is opened properly
+	if(!input.good())
+	{
+		cout << "Input file does not exist. Program may crash" << endl;
+	}
+
+	// Get the number of vertices
+	input >> vertices;
+
+	// Create 1 edgeList of each vertex
+	edgeLists.resize(vertices);
+	
+	// Input edge edgeV1<->edgeV2 and it's value
+	while(input >> edgeV1 >> edgeV2 >> edgeVal)
+	{
+		add_edge(edgeV1, edgeV2);
+		set_edge_value(edgeV1, edgeV2, edgeVal);
+	}
+
 }
 
 // Returns vertex count 
@@ -206,6 +237,8 @@ void PrimsAlgo::mst_of_graph(Graph& g)
 			//cout << left << setfill(' ') << setw(4) << vertex2 << " ";
 			//cout << left << setfill(' ') << setw(4) << vertex1 << " ";
 			//cout << left << setfill(' ') << setw(6) << edgeWeight << " " << endl;
+
+			// Keep adding edgeWeights
 			mstCost += edgeWeight;
 
 			// Push vertex2 to the set
@@ -234,29 +267,15 @@ void PrimsAlgo::mst_of_graph(Graph& g)
 
 int main()
 {
-	int vertices = 0;
+	cout << "Enter the name of the graph input file: ";
 
-	// Two end vertices of an edge
-	int edgeV1, edgeV2;
+	// Define a string and input the filename
+	string fileName;
 
-	// Edge value
-	double edgeVal;
-
-	// Define an input file stream
-	ifstream input( "input_2.txt" );
-
-	// Get the number of vertices
-	input >> vertices;
+	cin >> fileName;
 
 	// Create a graph with given number of vertices
-	Graph g(vertices);
-
-	// Input edge edgeV1<->edgeV2 and it's value
-	while(input >> edgeV1 >> edgeV2 >> edgeVal)
-	{
-		g.add_edge(edgeV1, edgeV2);
-		g.set_edge_value(edgeV1, edgeV2, edgeVal);
-	}
+	Graph g(fileName);
 
 	// Compute MST of the graph G
 	g.compute_mst();

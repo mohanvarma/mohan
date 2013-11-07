@@ -40,7 +40,8 @@ public:
 	vector_of_vector_of_pairs edgeLists; // edgeLists of each vertex
 
 	// Constructor
-	Graph(int vertices);
+	// Takes filename where graph data is stored
+	Graph(string fileName);
 
 	// Returns number of vertices
 	int get_vertex_count();
@@ -88,6 +89,8 @@ struct MstEdge
 // But, we need a node with min edge distance, so declaring a
 // comparator class as needed by priority_queue
 // This compares 2 MstEdges by their edge values(edge weights)
+
+// I got to know about this functor usage concept from stackoverflow.com
 class CompareEdges
 {
 public:
