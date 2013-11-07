@@ -68,26 +68,18 @@ void Graph::add_edge(int x, int y)
 // Deletes an edge x<->y from the graph
 void Graph::delete_edge(int x, int y)
 {
-	// Could not get this code compiled :( , commenting it for now
-	//
-
-	/*
-        //Iterator of vector_of_pairs
-        vector_of_pairs::Iterator ite;
-        for(ite = edgeLists[x].begin(); ite != edgeLists.end(); ite++)
-        {
-                if(ite->first == y)
-                {
-                        ite = edgeLists[x].erase(ite);
-
-                        //Decrement the edge count
-                        edges--;
-
-                        return;
-                }        
-        }
-	 */
-
+	//Iterator of vector_of_pairs
+	vector_of_pairs::iterator ite;
+	for(ite = edgeLists[x].begin(); ite != edgeLists[x].end(); ite++)
+	{
+		if(ite->first == y)
+		{
+			ite = edgeLists[x].erase(ite);
+			//Decrement the edge count
+			edges--;
+			return;
+		}        
+	}
 }
 
 // Gets the value associated with edge x<->y
@@ -122,6 +114,35 @@ void Graph::set_edge_value(int x, int y, double val)
 	}
 }
 
+// Computes MST of the given graph
+void Graph::compute_mst()
+{
+	// Create PrimsAlgo object
+	PrimsAlgo prims;
+
+	// Compute MST of present graph
+	// *this gives current object
+	prims.mst_of_graph(*this);
+
+	cout << "Total MST Cost: " << prims.mstCost << endl;
+
+	// From all the mstEdgeLists, add the edgeweights
+	for(int i=0; i<prims.mstVertices.size(); i++)
+	{
+		if(prims.mstEdgeLists[i].size() > 0)
+		{
+			for(int j=0; j<prims.mstEdgeLists[i].size(); j++)
+			{
+				cout << i << " " << prims.mstEdgeLists[i][j].first 
+						<< " " << prims.mstEdgeLists[i][j].second << endl;
+				cout << prims.mstEdgeLists[i][j].first << " " << i
+						<< " " << prims.mstEdgeLists[i][j].second << endl;
+				//sum += prims.mstEdgeLists[i][j].second;
+			}
+		}
+	}
+}
+
 // Computes minimum spanning tree of the given graph
 void PrimsAlgo::mst_of_graph(Graph& g)
 {
@@ -143,7 +164,7 @@ void PrimsAlgo::mst_of_graph(Graph& g)
 	//
 	// 'ComparePairs' compares 2 MstEdges and returns 
 	// an edge with min edge value
-	priority_queue<MstEdge, vector<MstEdge >, ComparePairs> pq;
+	priority_queue<MstEdge, vector<MstEdge >, CompareEdges> pq;
 
 	// Push all the neighbouring edges to pq
 	for(int i=0; i<g.edgeLists[currentVertex].size(); i++)
@@ -237,29 +258,8 @@ int main()
 		g.set_edge_value(edgeV1, edgeV2, edgeVal);
 	}
 
-	// Create PrimsAlgo object
-	PrimsAlgo prims;
-
-	// Compute MST of graph g
-	prims.mst_of_graph(g);
-
-	cout << "MST Cost: " << prims.mstCost << endl;
-
-	// From all the mstEdgeLists, add the edgeweights
-	for(int i=0; i<prims.mstVertices.size(); i++)
-	{
-		if(prims.mstEdgeLists[i].size() > 0)
-		{
-			for(int j=0; j<prims.mstEdgeLists[i].size(); j++)
-			{
-				cout << i << " " << prims.mstEdgeLists[i][j].first 
-						<< " " << prims.mstEdgeLists[i][j].second << endl;
-				cout << prims.mstEdgeLists[i][j].first << " " << i
-						<< " " << prims.mstEdgeLists[i][j].second << endl;
-				//sum += prims.mstEdgeLists[i][j].second;
-			}
-		}
-	}
+	// Compute MST of the graph G
+	g.compute_mst();
 
 	return 0;
 }

@@ -56,26 +56,19 @@ void Graph::add_edge(int x, int y)
 
 void Graph::delete_edge(int x, int y)
 {
-	// Could not get this code compiled :( , commenting it for now
-	//
+    //Iterator of vector_of_pairs
+    vector_of_pairs::iterator ite;
+    for(ite = edge_lists[x].begin(); ite != edge_lists[x].end(); ite++)
+    {
+	    if(ite->first == y)
+	    {
+		    ite = edge_lists[x].erase(ite);
 
-	/*
-        //Iterator of vector_of_pairs
-        vector_of_pairs::Iterator ite;
-        for(ite = edge_lists[x].begin(); ite != edge_lists.end(); ite++)
-        {
-                if(ite->first == y)
-                {
-                        ite = edge_lists[x].erase(ite);
-
-                        //Decrement the edge count
-                        edges--;
-
-                        return;
-                }        
-        }
-	*/
-
+		    //Decrement the edge count
+		    edges--;
+		    return;
+	    }        
+    }
 }
 
 int Graph::get_edge_value(int x, int y)

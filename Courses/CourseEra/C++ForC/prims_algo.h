@@ -66,6 +66,9 @@ public:
 	// Sets value of the edge x<->y
 	void set_edge_value(int x, int y, double val);
 
+	// Compuetes MST of the graph
+	void compute_mst();
+
 };
 
 // Structure representing an edge of a MST
@@ -85,7 +88,7 @@ struct MstEdge
 // But, we need a node with min edge distance, so declaring a
 // comparator class as needed by priority_queue
 // This compares 2 MstEdges by their edge values(edge weights)
-class ComparePairs
+class CompareEdges
 {
 public:
 	int operator() (const MstEdge& e1, const MstEdge& e2)
@@ -104,6 +107,7 @@ public:
 	// edge lists representing edges of MST.
 	vector_of_vector_of_pairs mstEdgeLists;
 
+	// Holds total mst cost
 	double mstCost; 
 
 	// Method computing MST of a given graph
