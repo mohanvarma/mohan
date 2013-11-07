@@ -15,7 +15,6 @@
 Graph::Graph(string fileName)
 {
 	edges = 0;
-
 	vertices = 0;
 
 	// Two end vertices of an edge
