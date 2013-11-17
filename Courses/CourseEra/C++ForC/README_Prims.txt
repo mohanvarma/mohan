@@ -3,6 +3,8 @@ Files:
 prims_algo.h    - Contains class declarations
 prims_algo.cpp  - Contains method definitions and main.
 
+Please rename the copied files as above names.
+
 Compiling:
 ==========
 I compiled this program in Linux.

@@ -163,10 +163,10 @@ void Graph::compute_mst()
 		{
 			for(int j=0; j<prims.mstEdgeLists[i].size(); j++)
 			{
-				cout << i << " " << prims.mstEdgeLists[i][j].first 
-						<< " " << prims.mstEdgeLists[i][j].second << endl;
-				cout << prims.mstEdgeLists[i][j].first << " " << i
-						<< " " << prims.mstEdgeLists[i][j].second << endl;
+				cout << left << setw(3) << i << " " << left << setw(3) << prims.mstEdgeLists[i][j].first 
+						<< " " << left << setw(4) << prims.mstEdgeLists[i][j].second << endl;
+				cout << left << setw(3) << prims.mstEdgeLists[i][j].first << " " << left << setw(3) << i
+						<< " " << left << setw(4) << prims.mstEdgeLists[i][j].second << endl;
 				//sum += prims.mstEdgeLists[i][j].second;
 			}
 		}

@@ -15,9 +15,6 @@
 
 using namespace std;
 
-// We run simulation on a graph with 50 vertices
-const int VERTICES = 50;
-
 // This is the main data type storing the graph as edge lists
 
 // typedef to store vector of( vector of (pairs))
