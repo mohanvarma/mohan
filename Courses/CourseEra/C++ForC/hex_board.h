@@ -1,4 +1,5 @@
 #include<iostream>
+#include<string>
 #include<vector>
 #include<map>
 #include<algorithm>
@@ -10,14 +11,16 @@ using namespace std;
 // Structure representing an edge of a graph
 struct graphEdge
 {
-        // vertex 
-        int vertex;
+	// vertex
+	int vertex;
 
-        //value associated with edge
-        double val;
+	//value associated with edge
+	double val;
 
 	// color of that edge
 	// 0 for blue, 1 for red
+	// I was able to finish this assignment without using this variable.
+	// As, I stored 2 players info in 2 separate graphs.
 	int color;
 };
 
@@ -65,7 +68,7 @@ public:
 	void delete_edge(int x, int y);
 
 	// Gets value of the edge x<->y
-	int get_edge_value(int x, int y);
+	double get_edge_value(int x, int y);
 
 	// Sets value of the edge x<->y
 	void set_edge_value(int x, int y, double val);
@@ -83,7 +86,7 @@ public:
 
 	vector<double> distance; // vector of distances
 	vector<int> parent; // vector of parent nodes. parent[i] gives the parent of i
-	                    // This vector will be used to backtrack from destination to construct path
+	// This vector will be used to backtrack from destination to construct path
 
 	// Constructor of ShortestPath Class
 	// Graph class instance is passed as a reference.
@@ -91,7 +94,7 @@ public:
 
 	// Returns(modifies the passed reference) sequence of vertices
 	// in the path from x to y
-	void short_path(int x, int y, vector<double>& path,
+	bool short_path(int x, int y, vector<double>& path,
 			const Graph& g);
 
 	// Returns path size
@@ -108,10 +111,10 @@ public:
 class CompareEdges
 {
 public:
-        int operator() (const graphEdge& e1, const graphEdge& e2)
-        {
-                return e1.val > e2.val;
-        }
+	int operator() (const graphEdge& e1, const graphEdge& e2)
+	{
+		return e1.val > e2.val;
+	}
 };
 
 // This class was used to test dijksta's algo
@@ -130,9 +133,12 @@ public:
 	// Variable to hold board dimention
 	int dimention;
 
+	// Holds the move number
+	int moveNumber;
+
 	// vector representing blue vertices
 	vector<int> blueVertices;
-	
+
 	// vector representing red vertices
 	vector<int> redVertices;
 
@@ -149,11 +155,11 @@ public:
 	// or returns false to indicate error
 	//
 	// 0 for blue, 1 for red
-	bool take_input(string str, int player);
+	bool take_input(string str, int player, Graph& g);
 
 	// Method to determine if a player wins
 	// 0 for blue, 1 for red
-	bool is_win(int player); 
+	bool is_win(int player, Graph& g); 
 
 	// This returns a vector of strings containing 
 	// xy coordinates of neighbours of a vertex
@@ -167,8 +173,9 @@ class Helper
 {
 public:
 	// Transforms coordinates to linear value
-	int xy_to_linear(string str, int dimention);
+	// This is used to easily store a move in blue/red vertices vector.
+	static int xy_to_linear(string str, int dimention);
 
 	// Transforms linear value to coordinates string
-	string linear_to_xy(int num, int dimention);
+	static string linear_to_xy(int num, int dimention);
 };
