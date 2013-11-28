@@ -392,7 +392,7 @@ void HexBoard::print_board()
 			cout << ' ';
 		}
 	}
-	cout << '\n' << endl;
+	cout << endl;
 
 
 	// Now print a number corresponding to that column
@@ -447,7 +447,7 @@ void HexBoard::print_board()
 			cout << ' ';
 		}
 
-		cout << '\n' << endl;
+		cout << endl;
 
 	}
 
@@ -474,7 +474,7 @@ void HexBoard::print_board()
 			cout << ' ';
 		}
 	}
-	cout << '\n' << endl;
+	//cout << '\n' << endl;
 }
 
 // Validates input and changes the board 
