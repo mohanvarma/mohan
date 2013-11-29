@@ -1,0 +1,1 @@
+Given N integers [N<=10^5], count the total pairs of integers that have a difference of K. [K>0 and K< 1e9]. Each of the N integers will be greater than 0 and at least K away from 2^31-1 (Everything can be done with 32 bit integers).
