@@ -40,7 +40,7 @@ typedef vector<graphEdge > vector_of_edges;
 // Graph data type
 class Graph
 {
-public:
+    public:
 
 	int edges;    // No. of edges
 	int vertices; // No. of vertices
@@ -79,7 +79,7 @@ public:
 //
 class ShortestPath
 {
-public:
+    public:
 
 	vector<int> path; // vector representing the sequence of vertices(path)
 	int path_length; // path cost
@@ -95,7 +95,7 @@ public:
 	// Returns(modifies the passed reference) sequence of vertices
 	// in the path from x to y
 	bool short_path(int x, int y, vector<double>& path,
-			const Graph& g);
+		const Graph& g);
 
 	// Returns path size
 	int path_size(int x, int y);
@@ -110,10 +110,10 @@ public:
 // I got to know about this functor usage concept from stackoverflow.com
 class CompareEdges
 {
-public:
+    public:
 	int operator() (const graphEdge& e1, const graphEdge& e2)
 	{
-		return e1.val > e2.val;
+	    return e1.val > e2.val;
 	}
 };
 
@@ -122,14 +122,14 @@ public:
 // Here is the link (https://class.coursera.org/cplusplus4c-002/forum/thread?thread_id=203)
 class LocalTesting
 {
-public:
+    public:
 	void Test();
 };
 
 // class representing the hex board of dimention p X p
 class HexBoard
 {
-public:
+    public:
 	// Variable to hold board dimention
 	int dimention;
 
@@ -164,6 +164,9 @@ public:
 	// This returns a vector of strings containing 
 	// xy coordinates of neighbours of a vertex
 	vector<pair<int, int> > get_neighbours(pair<int, int> p);
+
+	// This validates the computer's move
+	bool is_valid_computermove(pair<int, int> p);
 };
 
 // This class contains helper methods to transform
@@ -171,7 +174,7 @@ public:
 // used by other class methods
 class Helper
 {
-public:
+    public:
 	// Transforms coordinates to linear value
 	// This is used to easily store a move in blue/red vertices vector.
 	static int xy_to_linear(pair<int, int> p, int dimention);
