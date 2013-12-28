@@ -80,7 +80,9 @@ print "Comparisons:", comparisons
 
 comparisons = 0
 
-quick_sort(array[:], 0, len(array)-1, PIVOT_MEDIAN)
+quick_sort(array, 0, len(array)-1, PIVOT_MEDIAN)
+print array[0]
+print array[len(array)-1]
 
 #array_temp = [8,2,4,5,7,1]
 #quick_sort(array_temp, 0, len(array_temp)-1, PIVOT_MEDIAN)
