@@ -7,6 +7,6 @@ git add
 git commit -m <message>
 git push
 git reset --hard origin/master
-git config --global user.email varma.mohan@ymail.com
-git config --global user.name mohanvarma
+git config --global user.email v***.m***@ymail.com
+git config --global user.name m**v**a
 git rm <file>
