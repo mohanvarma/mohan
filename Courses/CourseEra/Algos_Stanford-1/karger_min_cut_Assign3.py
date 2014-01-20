@@ -4,6 +4,9 @@ import copy
 import sys
 import time
 
+# This dict will be used to count the frequencies
+kargers = {}
+
 class Graph:
     def __init__(self):
         self.edgeList = {}
@@ -52,10 +55,21 @@ def run_kragers_on_copy(graph):
         dst = random.choice(graph.edgeList[src])
         graph.contract_edge(src, dst)
     
+    # Finally only 2 edges should remain
     assert (len(graph.edgeList) == 2)
     key_list = graph.edgeList.keys()
-    #assert (len(graph.edgeList[key_list[0]]) == len(graph.edgeList[key_list[1]]))
+
+    # All the remaining edges should be parallel, so degrees should be same
+    assert (len(graph.edgeList[key_list[0]]) == len(graph.edgeList[key_list[1]]))
+
     print 'Cuts:', len(graph.edgeList[key_list[0]])
+
+    # Save in a dict
+    try:
+        kargers[len(graph.edgeList[key_list[0]])] += 1
+    except KeyError:
+        kargers[len(graph.edgeList[key_list[0]])] = 1
+
     return len(graph.edgeList[key_list[0]])
 
 def run_kragers(graph, N):
@@ -91,8 +105,15 @@ def main():
     #print graph.edgeList
     vertices = len(graph.edgeList)
     N = int(vertices*vertices*math.log(vertices, 2))
-    print 'Testing', N, 'times'
-    ret = run_kragers(graph, N)
+
+    # Testing it 100 times now, make it N
+    print 'Testing', 100, 'times'
+    ret = run_kragers(graph, 100)
     print 'Returned', ret
+
+    # sort the dictionary by its keys, descending order
+    frequencies = sorted(kargers.items(), key = lambda x: x[1])
+    frequencies.reverse()
+    print frequencies
             
 main()
