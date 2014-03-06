@@ -297,7 +297,8 @@ syn match    cCustomParen    "?=(" contains=cParen,cCppParen
 syn match    cCustomFunc     "\w\+\s*(\@=" contains=cCustomParen
 syn match    cCustomScope    "::"
 syn match    cCustomClass    "\w\+\s*::" contains=cCustomScope
-hi def cCustomFunc  gui=bold guifg=seagreen
+" hi def cCustomFunc  guifg=MediumSpringGreen
+hi def cCustomFunc  guifg=tomato2
 hi def link cCustomClass Function
 
 " vim:set sw=2 sts=2 ts=8 noet:
