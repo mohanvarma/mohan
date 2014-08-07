@@ -83,6 +83,34 @@ Node reverse(Node head)
     return reversed;
 }
 
+Node reverse_recursive(Node curr, Node prev)
+{
+    if(!curr->next)
+    {
+	curr->next = prev;
+	return curr;
+    }
+
+    Node new_head = reverse_recursive(curr->next, curr);
+    curr->next = prev;
+    return new_head;
+}
+
+/*
+list_node* rev_list_rec(list_node* head, list_node* prev)
+{
+  // Base case
+  if(head == NULL || head->next == NULL)
+  {
+    head->next = prev;
+    return head;
+  }
+
+  list_node* new_head = rev_list_rec(head->next, head);
+  head->next = prev;
+  return new_head;
+}
+ */
 int main()
 {
     Node head = create_head(1);
@@ -90,8 +118,16 @@ int main()
 
     Node added = create_node(2);
     add_node(head, added);
+    added = create_node(3);
+    add_node(head, added);
+    added = create_node(4);
+    add_node(head, added);
+    added = create_node(5);
+    add_node(head, added);
     print_list(head);
     Node rev = reverse(head);
+    print_list(rev);
+    rev = reverse_recursive(rev, NULL);
     print_list(rev);
     free_list(rev);
     return 0;
